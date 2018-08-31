@@ -5,7 +5,7 @@
   if ($this->owner->name=='panel') {
    $out['CONTROLPANEL']=1;
   }
-  $table_name='okey_google';
+  $table_name='app_okey_google';
   $rec=SQLSelectOne("SELECT * FROM $table_name WHERE ID='$id'");
   if ($this->mode=='update') {
    $ok=1;
@@ -15,12 +15,6 @@
     $out['ERR_TITLE']=1;
     $ok=0;
    }
-  //updating 'call_name' (varchar)
-   $rec['CALL_NAME']=gr('call_name');
-  //updating 'client_token' (varchar)
-   $rec['CLIENT_TOKEN']=gr('client_token');
-  //updating 'developer_token' (varchar)
-   $rec['DEVELOPER_TOKEN']=gr('developer_token');
   //UPDATING RECORD
    if ($ok) {
     if ($rec['ID']) {

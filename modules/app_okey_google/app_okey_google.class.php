@@ -4,20 +4,20 @@
 * @package project
 * @author Wizard <sergejey@gmail.com>
 * @copyright http://majordomo.smartliving.ru/ (c)
-* @version 0.1 (wizard, 12:08:45 [Aug 29, 2018])
+* @version 0.1 (wizard, 23:08:56 [Aug 31, 2018])
 */
 //
 //
-class okey_google extends module {
+class app_okey_google extends module {
 /**
-* okey_google
+* app_okey_google
 *
 * Module class constructor
 *
 * @access private
 */
 function __construct() {
-  $this->name="okey_google";
+  $this->name="app_okey_google";
   $this->title="Okey google";
   $this->module_category="<#LANG_SECTION_APPLICATIONS#>";
   $this->checkInstalled();
@@ -135,15 +135,15 @@ function admin(&$out) {
  if (isset($this->data_source) && !$_GET['data_source'] && !$_POST['data_source']) {
   $out['SET_DATASOURCE']=1;
  }
- if ($this->data_source=='okey_google' || $this->data_source=='') {
-  if ($this->view_mode=='' || $this->view_mode=='search_okey_google') {
-   $this->search_okey_google($out);
+ if ($this->data_source=='app_okey_google' || $this->data_source=='') {
+  if ($this->view_mode=='' || $this->view_mode=='search_app_okey_google') {
+   $this->search_app_okey_google($out);
   }
-  if ($this->view_mode=='edit_okey_google') {
-   $this->edit_okey_google($out, $this->id);
+  if ($this->view_mode=='edit_app_okey_google') {
+   $this->edit_app_okey_google($out, $this->id);
   }
-  if ($this->view_mode=='delete_okey_google') {
-   $this->delete_okey_google($this->id);
+  if ($this->view_mode=='delete_app_okey_google') {
+   $this->delete_app_okey_google($this->id);
    $this->redirect("?");
   }
  }
@@ -159,30 +159,30 @@ function usual(&$out) {
  $this->admin($out);
 }
 /**
-* okey_google search
+* app_okey_google search
 *
 * @access public
 */
- function search_okey_google(&$out) {
-  require(DIR_MODULES.$this->name.'/okey_google_search.inc.php');
+ function search_app_okey_google(&$out) {
+  require(DIR_MODULES.$this->name.'/app_okey_google_search.inc.php');
  }
 /**
-* okey_google edit/add
+* app_okey_google edit/add
 *
 * @access public
 */
- function edit_okey_google(&$out, $id) {
-  require(DIR_MODULES.$this->name.'/okey_google_edit.inc.php');
+ function edit_app_okey_google(&$out, $id) {
+  require(DIR_MODULES.$this->name.'/app_okey_google_edit.inc.php');
  }
 /**
-* okey_google delete record
+* app_okey_google delete record
 *
 * @access public
 */
- function delete_okey_google($id) {
-  $rec=SQLSelectOne("SELECT * FROM okey_google WHERE ID='$id'");
+ function delete_app_okey_google($id) {
+  $rec=SQLSelectOne("SELECT * FROM app_okey_google WHERE ID='$id'");
   // some action for related tables
-  SQLExec("DELETE FROM okey_google WHERE ID='".$rec['ID']."'");
+  SQLExec("DELETE FROM app_okey_google WHERE ID='".$rec['ID']."'");
  }
  function processSubscription($event, $details='') {
  $this->getConfig();
@@ -211,7 +211,7 @@ function usual(&$out) {
 * @access public
 */
  function uninstall() {
-  SQLExec('DROP TABLE IF EXISTS okey_google');
+  SQLExec('DROP TABLE IF EXISTS app_okey_google');
   parent::uninstall();
  }
 /**
@@ -223,14 +223,11 @@ function usual(&$out) {
 */
  function dbInstall($data) {
 /*
-okey_google - 
+app_okey_google - 
 */
   $data = <<<EOD
- okey_google: ID int(10) unsigned NOT NULL auto_increment
- okey_google: TITLE varchar(100) NOT NULL DEFAULT ''
- okey_google: CALL_NAME varchar(255) NOT NULL DEFAULT ''
- okey_google: CLIENT_TOKEN varchar(255) NOT NULL DEFAULT ''
- okey_google: DEVELOPER_TOKEN varchar(255) NOT NULL DEFAULT ''
+ app_okey_google: ID int(10) unsigned NOT NULL auto_increment
+ app_okey_google: TITLE varchar(100) NOT NULL DEFAULT ''
 EOD;
   parent::dbInstall($data);
  }
@@ -238,6 +235,6 @@ EOD;
 }
 /*
 *
-* TW9kdWxlIGNyZWF0ZWQgQXVnIDI5LCAyMDE4IHVzaW5nIFNlcmdlIEouIHdpemFyZCAoQWN0aXZlVW5pdCBJbmMgd3d3LmFjdGl2ZXVuaXQuY29tKQ==
+* TW9kdWxlIGNyZWF0ZWQgQXVnIDMxLCAyMDE4IHVzaW5nIFNlcmdlIEouIHdpemFyZCAoQWN0aXZlVW5pdCBJbmMgd3d3LmFjdGl2ZXVuaXQuY29tKQ==
 *
 */
