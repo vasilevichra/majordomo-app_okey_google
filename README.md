@@ -1,1 +1,1 @@
-# md-okey-google
+# majordomo-app_okey_google
