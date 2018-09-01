@@ -8,5 +8,3 @@
  */
 
 echo "ok google";
-
-?>
